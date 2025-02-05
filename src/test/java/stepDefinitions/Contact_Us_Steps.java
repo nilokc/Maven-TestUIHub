@@ -19,7 +19,7 @@ public class Contact_Us_Steps {
 
     private WebDriver driver;
 
-    @Before
+    @Before("@Contact_Us")
     public void setup(){
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/drivers/chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -37,7 +37,7 @@ public class Contact_Us_Steps {
         return new ChromeDriver(chromeOptions);
     }
 
-    @After
+    @After("@Contact_Us")
     public void tearDown() {
         driver.quit();
     }
