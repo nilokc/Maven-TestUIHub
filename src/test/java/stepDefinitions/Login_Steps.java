@@ -6,7 +6,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -44,20 +43,10 @@ public class Login_Steps {
 
     }
 
-
-
-   @When("I enter a username {string}")
-    public void i_enter_a_username_webdriver(String username) {
-        driver.findElement(By.id("text")).sendKeys(username);
+    @When("I enter a username {string}")
+    public void i_enter_a_unique_username(String username) {
+      driver.findElement(By.id("text")).sendKeys(username);
     }
-
-   /* @When("I enter a username {word}")
-    public void i_enter_a_username(String username) {
-       // driver.findElement(By.id("text")).sendKeys(username);
-        driver.findElement(By.id("text")).sendKeys(username);
-
-    }
-*/
 
     @When("I enter a password {}")
     public void i_enter_a_password_webdriver123 (String password) {
@@ -98,20 +87,12 @@ public class Login_Steps {
         }
     }
 
-  /*  @When("I enter a username {word}")
-    public void i_enter_a_unique_username(String username) {
-        driver.findElement(By.id("text")).sendKeys(username);
+    @Then("I should be presented with the following login validation message {string}")
+    public void i_should_be_presented_with_the_following_login_validation_message(String loginValidationMessage) {
+        String actual_message = driver.switchTo().alert().getText();
+        System.out.println("Alert message: " + actual_message);
+        Assert.assertEquals(loginValidationMessage,actual_message);
     }
-*/
-    @Then("I should be presented with the following login validation message {}")
-    public void i_should_be_presented_with_the_following_login_validation_message(String expectedMessage) {
-        String login_Message = driver.switchTo().alert().getText();
-        Assert.assertEquals(login_Message, "expectedMessage");
-    }
-
-
-
-
 
 
     @After("@login")

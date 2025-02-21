@@ -1,11 +1,13 @@
-@login @regression
+@login
 Feature: WebDriver University - Login Page
 
-  Background: Given I access the webdriver university login page
+  Background:
+    Given I access the webdriver university login page
+
 
 
   Scenario: Validate Successful Login
-    Given I access the webdriver university login page
+  #  Given I access the webdriver university login page
     When I enter a username "webdriver"
     When I enter a password webdriver123
     And I click on the login button
@@ -13,18 +15,19 @@ Feature: WebDriver University - Login Page
 
 
   Scenario: Validate Unsuccessful Login
-    Given I access the webdriver university login page
+    #Given I access the webdriver university login page
     When I enter a username "webdriver"
     When I enter a password nil
     And I click on the login button
     Then I should be presented with the unsuccessful login message
 
+@smoke
   Scenario Outline: Validate - Successful & Unsuccessful Login
-    Given I access the webdriver university login page
-    When I enter a username <username>
+   # Given I access the webdriver university login page
+    When I enter a username "<username>"
     And I enter a password <password>
     And I click on the login button
-    Then I should be presented with the following login validation message <loginValidationMessage>
+    Then I should be presented with the following login validation message "<loginValidationMessage>"
 
 
     Examples:
